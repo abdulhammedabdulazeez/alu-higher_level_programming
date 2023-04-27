@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 9-model_state_filter_a.py """
+""" 8-model_state_fetch_first.py """
 
 
 import sys
@@ -15,8 +15,11 @@ if __name__ == "__main__":
 
     session = Session(engine)
 
-    data = session.query(State).filter(State.name.contains('a')).all()
-    for record in data:
-        print("{}: {}".format(record.__dict__['id'], record.__dict__['name']))
+    data = session.query(State).first()
+
+    if data:
+        print("{}: {}".format(data.__dict__['id'], data.__dict__['name']))
+    else:
+        print("Nothing")
 
     session.close()
